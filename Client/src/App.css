@@ -1,0 +1,125 @@
+/* App.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f6f9; /* Light background for a professional feel */
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2.5em;
+  color: #333;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.book-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.book-form input {
+  padding: 12px;
+  margin: 5px;
+  font-size: 1em;
+  width: 220px;
+  border: 1px solid #d1d1d6;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.book-form input:focus {
+  border-color: #0066cc;  /* Blue focus border */
+  outline: none;
+}
+
+.book-form button {
+  padding: 12px 24px;
+  margin: 5px;
+  font-size: 1em;
+  background-color: #0066cc;  /* Blue for Add and Edit */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.book-form button:hover {
+  background-color: #005bb5;  /* Darker blue on hover */
+  transform: translateY(-2px);  /* Small lift effect */
+}
+
+.book-form button:active {
+  background-color: #004b8d;  /* Even darker blue when clicked */
+  transform: translateY(0);  /* Normal state when clicked */
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.book-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.book-item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
+}
+
+.book-item p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Add space between buttons */
+.book-item button {
+  padding: 10px 20px;
+  background-color: #ff6347; /* Red for Delete */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.3s ease;
+  margin-right: 10px; /* Added margin to create space between buttons */
+}
+
+.book-item button:hover {
+  background-color: #e53e3e; /* Darker red on hover */
+  transform: translateY(-2px); /* Small lift effect */
+}
+
+.book-item button:active {
+  background-color: #c53030; /* Darkest red on click */
+  transform: translateY(0); /* Normal state when clicked */
+}
+
+
+.book-item input {
+  margin-top: 10px;
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #d1d1d6;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.book-item input:focus {
+  border-color: #0066cc; /* Blue focus border */
+  outline: none;
+}
