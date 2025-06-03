@@ -1,2 +1,12 @@
-venv/
-venv/
+client/.env
+server/.env
+client/.env.local
+server/.env.local
+server/config.py
+server/settings.py
+client/node_modules/
+server/node_modules/
+server/venv/
+__pycache__/
+*.log
+.vscode/

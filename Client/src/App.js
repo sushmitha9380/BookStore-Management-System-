@@ -7,6 +7,9 @@ function App() {
   const [releaseYear, setReleaseYear] = useState("");
   const [newTitle, setNewTitle] = useState("");
 
+  // Read API base URL from environment variable
+  const REACT_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -14,7 +17,7 @@ function App() {
   const fetchBooks = async () => {
     console.log("Fetching books...");
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/books/");
+      const response = await fetch(`${REACT_API_BASE_URL}/api/books/`);
       const data = await response.json();
       setBooks(data); // Update state
     } catch (err) {
@@ -23,12 +26,17 @@ function App() {
   };
 
   const addBook = async () => {
+    if (!title || !releaseYear) {
+      alert("Please enter both title and release year");
+      return;
+    }
+
     const bookData = {
       title,
       release_year: parseInt(releaseYear, 10),
     };
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/books/create/", {
+      const response = await fetch(`${REACT_API_BASE_URL}/api/books/create/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,21 +44,33 @@ function App() {
         body: JSON.stringify(bookData),
       });
 
+      if (!response.ok) {
+        throw new Error("Failed to add book");
+      }
+
       const data = await response.json();
       setBooks((prev) => [...prev, data]);
-      fetchBooks(); // Re-fetch books after adding
+      setTitle("");         // Clear input fields
+      setReleaseYear("");
+      // Optionally refetch all books:
+      // fetchBooks();
     } catch (err) {
       console.log("Error adding book:", err);
     }
   };
 
   const updateTitle = async (pk, release_year) => {
+    if (!newTitle) {
+      alert("Please enter a new title");
+      return;
+    }
+
     const bookData = {
       title: newTitle,
       release_year,
     };
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/books/${pk}`, {
+      const response = await fetch(`${REACT_API_BASE_URL}/api/books/${pk}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -58,18 +78,17 @@ function App() {
         body: JSON.stringify(bookData),
       });
 
+      if (!response.ok) {
+        throw new Error("Failed to update book");
+      }
+
       const data = await response.json();
       setBooks((prev) =>
-        prev.map((book) => {
-          if (book.id === pk) {
-            return data;
-          } else {
-            return book;
-          }
-        })
+        prev.map((book) => (book.id === pk ? data : book))
       );
       setNewTitle("");  // Clear input after updating
-      fetchBooks(); // Re-fetch books after updating
+      // Optionally refetch all books:
+      // fetchBooks();
     } catch (err) {
       console.log("Error updating book:", err);
     }
@@ -77,11 +96,17 @@ function App() {
 
   const deleteBook = async (pk) => {
     try {
-      await fetch(`http://127.0.0.1:8000/api/books/${pk}`, {
+      const response = await fetch(`${REACT_API_BASE_URL}/api/books/${pk}`, {
         method: "DELETE",
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete book");
+      }
+
       setBooks((prev) => prev.filter((book) => book.id !== pk)); // Update state after delete
-      fetchBooks(); // Re-fetch books after deleting
+      // Optionally refetch all books:
+      // fetchBooks();
     } catch (err) {
       console.log("Error deleting book:", err);
     }
