@@ -1,33 +1,92 @@
-# Book Store Management System
+# Book Store Management System (CRUD)
 
 ## Overview
-The **Book Store Management System** is a full-stack web application designed to manage book inventory,and store operations efficiently. It provides a user-friendly interface along with an admin panel for managing stock and orders.
+This **Book Store Management System** is a full-stack web application that allows users to perform **CRUD (Create, Read, Update, Delete)** operations on book records. Each book has essential information like **Title** and **Release Year**.
 
-This project is built using modern web technologies including ReactJS for the frontend, Django for the backend API, and SQLite as the database.
+The system provides a user-friendly interface for managing books and is built using **ReactJS** for the frontend and **Django** with **SQLite** for the backend.
 
 ## Features
-- Browse and search books by title, author, or category
-- User registration and authentication
-- Add books to cart and place orders
-- Admin panel for managing books and orders
-- Responsive design for desktop and mobile
-- Real-time updates using React state management
+- Add new books (Title, Release Year)
+- View a list of all books
+- Update book information
+- Delete books from the list
+- Responsive UI for ease of use
+- Django REST API integration with ReactJS frontend
 
 ## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript, ReactJS
-- **Backend:** Python, Django REST Framework
-- **Database:** SQLite
-- **Others:** Axios for API calls, JWT for authentication
+
+- **Frontend:**
+  - HTML, CSS, JavaScript
+  - ReactJS
+
+- **Backend:**
+  - Python
+  - Django
+  - Django REST Framework
+
+- **Database:**
+  - SQLite
+
+## CRUD Operations
+
+| Operation | Description                              |
+|-----------|------------------------------------------|
+| Create    | Add a new book with title and year       |
+| Read      | View all books in the store              |
+| Update    | Edit existing book details               |
+| Delete    | Remove a book from the store             |
 
 ## Installation & Setup
 
-### Prerequisites
-- Python 3.x
-- Node.js and npm/yarn
-- Git
+### 1. Clone the Repository
 
-### Backend Setup (Django)
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/bookstore-management.git
-   cd bookstore-management/backend
+```bash
+git clone https://github.com/sushmitha9380/bookstore-crud.git
+cd bookstore-crud
+```
+### 2. Backend Setup (Django)
+```bash
+cd Server
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+### 3. Frontend Setup (React)
+```bash
+cd ../Client
+npm install
+npm start
+```
+---
+
+## API Endpoints
+
+| Method | Endpoint           | Description        |
+|--------|--------------------|--------------------|
+| GET    | `/api/books/`      | List all books     |
+| POST   | `/api/books/`      | Add a new book     |
+| PUT    | `/api/books/{id}/` | Update a book      |
+| DELETE | `/api/books/{id}/` | Delete a book      |
+
+---
+
+## Sample Book JSON
+
+```json
+{
+  "title": "The Great Gatsby",
+  "release_year": 1925
+}
+```
+---
+
+## Contact
+For any questions or suggestions, please contact:
+
+Sushmitha
+Email: sushmithars5992@gmail.com
+GitHub: sushmitha9380
+
+
