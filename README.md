@@ -83,7 +83,7 @@ npm start
 ---
 
 ## Contact
-For any questions or suggestions, please contact:
+*For any questions or suggestions, please contact:*
 
 Sushmitha
 
